@@ -15,7 +15,10 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+// Serve built frontend
+const frontendDist = path.join(__dirname, '../frontend/dist');
+app.use(express.static(frontendDist));
 
 // API Routes
 app.use('/api/auth', authRoutes);
@@ -28,14 +31,14 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok', timestamp: new Dat
 
 // Serve frontend for any non-API route
 app.get('/{*path}', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+  res.sendFile(path.join(frontendDist, 'index.html'));
 });
 
 // Global error handler
 app.use((err, req, res, next) => {
-  console.error('[GLOBAL ERROR]', req.method, req.url, err.message, err.stack);
+  console.error('[ERROR]', req.method, req.url, err.message);
   res.status(500).json({ error: err.message });
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`TaskFlow server running on port ${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`TaskFlow running on port ${PORT}`));

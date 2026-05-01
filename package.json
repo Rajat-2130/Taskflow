@@ -1,12 +1,11 @@
 {
   "name": "taskflow",
   "version": "1.0.0",
-  "description": "TaskFlow - Project Management App",
+  "description": "TaskFlow - Team Task Management App",
   "scripts": {
     "start": "node backend/server.js",
-    "build": "cd frontend && npm install && npm run build",
-    "install:all": "cd backend && npm install && cd ../frontend && npm install",
-    "postinstall": "cd frontend && npm install && npm run build"
+    "build": "cd frontend && npm install && npm run build && cd ../backend && npm install",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install"
   },
   "engines": {
     "node": ">=18.0.0"
