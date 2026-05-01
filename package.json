@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "TaskFlow - Team Task Management App",
   "scripts": {
-    "start": "node backend/server.js",
-    "build": "cd frontend && npm install && npm run build && cd ../backend && npm install",
-    "install:all": "cd backend && npm install && cd ../frontend && npm install"
+    "start": "node taskflow/backend/server.js",
+    "build": "cd taskflow/frontend && npm install && npm run build && cd ../backend && npm install"
   },
   "engines": {
     "node": ">=18.0.0"
